@@ -1,2 +1,0 @@
-"use strict";(self.webpackChunkgatsby_starter_hello_world=self.webpackChunkgatsby_starter_hello_world||[]).push([[883],{9616:function(e,t,l){function n(){return React.createElement(React.Fragment,null,React.createElement("h1",null,"404: Not Found"),React.createElement("p",null,"ページが見つかりませんでした。古いページをリロードしたのかもしれません。"))}l.r(t),l.d(t,{default:function(){return n}})}}]);
-//# sourceMappingURL=component---src-pages-404-js-3eb6d42c901b2a3b0cd4.js.map

@@ -1,1 +1,0 @@
-{"version":3,"file":"component---src-pages-404-js-dbf93ada35fc06b35f11.js","mappings":"6IAAe,SAASA,IACpB,OACI,yC","sources":["webpack://gatsby-starter-hello-world/./src/pages/404.js"],"sourcesContent":["export default function Home() {\n    return (\n        <>\n        </>\n    )\n}\n  "],"names":["Home"],"sourceRoot":""}
