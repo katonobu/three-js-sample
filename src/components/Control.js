@@ -31,14 +31,13 @@ const CameraController = () => {
   useEffect(
      () => {
         camera.position.set(0, 10, 0);
-        camera.up.set(1,0,0)
         const controls = new OrbitControls(camera, gl.domElement);
         controls.minDistance = 3;
         controls.maxDistance = 100;
-//        controls.maxAzimuthAngle = Math.PI / 2
-//        controls.minAzimuthAngle = -Math.PI / 2
-//        controls.maxPolarAngle = Math.PI
-//        controls.minPolarAngle = 0
+        controls.maxPolarAngle = Math.PI / 2
+        controls.minPolarAngle = 0
+        controls.maxAzimuthAngle = 0
+        controls.minAzimuthAngle = -Math.PI/2
         return () => {
           controls.dispose();
         };

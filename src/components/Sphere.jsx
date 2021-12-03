@@ -43,14 +43,14 @@ const Sphere = () => {
     basebandPhase.current += 0.001;
     const I = Math.cos(Math.PI * basebandPhase.current)
     const Q = Math.sin(Math.PI * basebandPhase.current);
-    basebandMeshRef.current.position.x = 5 * Q
-    basebandMeshRef.current.position.z = 5 * I
+    basebandMeshRef.current.position.z = -5 * Q
+    basebandMeshRef.current.position.x = 5 * I
 
     rfPhase.current += 0.1
     const rfI = I * Math.cos(Math.PI * rfPhase.current)
     const rfQ = Q * Math.sin(Math.PI * rfPhase.current)
-    rfMeshRef.current.position.x = 5 * rfQ;
-    rfMeshRef.current.position.z = 5 * rfI;
+    rfMeshRef.current.position.z = -5 * rfQ;
+    rfMeshRef.current.position.x = 5 * rfI;
 
     rfHistory.current.unshift({i:rfI, q:rfQ})
     if(1024 < rfHistory.current.length) {
@@ -59,7 +59,7 @@ const Sphere = () => {
 
     const points = []
     for(let i = 0; i < rfHistory.current.length - 1; i++) {
-      points.push(new THREE.Vector3(5 * rfHistory.current[i].q, -i / 1024 * 50, 5 * rfHistory.current[i].i))
+      points.push(new THREE.Vector3(5 * rfHistory.current[i].i, -i / 1024 * 50, -5 * rfHistory.current[i].q))
     }
     lineRef.current.geometry = new THREE.BufferGeometry().setFromPoints(points)
 
@@ -90,12 +90,12 @@ const Sphere = () => {
       />
     </mesh>
     <line ref={lineRef}>
-      <lineBasicMaterial attach="material" color={'#801010'} />
+      <lineBasicMaterial attach="material" fog='true' color={'#D02020'} />
     </line>    
     </>
   );
 };
 
-// [Q,t,I] というマッピングになる
+// [I,t,Q] というマッピングになる
 export default Sphere;
 

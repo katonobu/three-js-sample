@@ -41,13 +41,14 @@ function AutoResize(props) {
 
 export default function Home() {
   return (
-    <Canvas orthographic camera={{ zoom: 50, position: [0, 0, 10]}}>
+    <Canvas orthographic camera={{ zoom: 50}}>
       <AutoResize />
       <CameraController />
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       <Plane />
       <Sphere/>
+      <fog attach="fog" args={['#000000', 0, 90]} />
     </Canvas>
   )
 }
