@@ -22,7 +22,7 @@ OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
 SOFTWARE.
 */
 
-import React, { useEffect, useRef } from 'react'
+import React, { useEffect, useCallback } from 'react'
 import { Canvas, useThree } from '@react-three/fiber'
 import Plane from '../components/Plane'
 import CameraController from "../components/Control"
@@ -39,7 +39,17 @@ function AutoResize(props) {
   return null;
 }
 
+
 export default function Home() {
+  const updateIqCallback = useCallback(
+    (basebandPhase) => {
+      let I = Math.cos(Math.PI * basebandPhase/1200)
+      let Q = Math.sin(Math.PI * basebandPhase/1200);
+      return {I, Q}
+    },
+    [],
+  );
+  
   return (
     <Canvas orthographic camera={{ zoom: 50}}>
       <AutoResize />
@@ -47,7 +57,7 @@ export default function Home() {
       <ambientLight />
       <pointLight position={[10, 10, 10]} />
       <Plane />
-      <Sphere/>
+      <Sphere updateIq={updateIqCallback}/>
       <fog attach="fog" args={['#000000', 0, 90]} />
     </Canvas>
   )

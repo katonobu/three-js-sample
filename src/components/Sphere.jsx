@@ -26,7 +26,7 @@ import React, {useRef, useEffect} from "react";
 import { useFrame } from '@react-three/fiber'
 import * as THREE from 'three'
 
-const Sphere = () => {
+const Sphere = ({updateIq}) => {
   const basebandMeshRef = useRef();
   const basebandPhase = useRef();
   const rfMeshRef = useRef();
@@ -40,15 +40,21 @@ const Sphere = () => {
   },[]);
 
   useFrame(()=>{
-    basebandPhase.current += 0.001;
-    const I = Math.cos(Math.PI * basebandPhase.current)
-    const Q = Math.sin(Math.PI * basebandPhase.current);
+    basebandPhase.current += 1;
+
+    let I = Math.cos(Math.PI * basebandPhase.current / 1200)
+    let Q = Math.sin(Math.PI * basebandPhase.current / 1200);
+    if (updateIq) {
+      const IQ = updateIq(basebandPhase.current)
+      I = IQ.I
+      Q = IQ.Q
+    }
     basebandMeshRef.current.position.z = -5 * Q
     basebandMeshRef.current.position.x = 5 * I
 
-    rfPhase.current += 0.1
-    const rfI = I * Math.cos(Math.PI * rfPhase.current)
-    const rfQ = Q * Math.sin(Math.PI * rfPhase.current)
+    rfPhase.current += 1
+    const rfI = I * Math.cos(Math.PI * rfPhase.current / 12)
+    const rfQ = Q * Math.sin(Math.PI * rfPhase.current / 12)
     rfMeshRef.current.position.z = -5 * rfQ;
     rfMeshRef.current.position.x = 5 * rfI;
 

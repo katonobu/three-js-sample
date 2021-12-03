@@ -37,7 +37,7 @@ const CameraController = () => {
         controls.maxPolarAngle = Math.PI / 2
         controls.minPolarAngle = 0
         controls.maxAzimuthAngle = 0
-        controls.minAzimuthAngle = -Math.PI/2
+        controls.minAzimuthAngle = -Math.PI / 2
         return () => {
           controls.dispose();
         };
